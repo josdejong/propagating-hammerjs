@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="node_modules/hammerjs/hammer.js"></script>
+  <script src="propagating.js"></script>
+  <style>
+    #parent {width: 400px; height: 400px; background: yellow;     border: 1px solid orange;}
+    #child  {width: 200px; height: 200px; background: lightgreen; border: 1px solid green; margin: 10px;}
+  </style>
+</head>
+<body>
+
+<div id="parent">
+  parent
+  <div id="child">
+    child
+  </div>
+</div>
+
+<script>
+  var parent = document.getElementById('parent');
+  var hammer1 = propagating(new Hammer(parent))
+      .on('tap', function (event) {
+        alert('tap on parent');
+      });
+
+  var child = document.getElementById('child');
+  var hammer2 = propagating(new Hammer(child))
+      .on('tap', function (event) {
+        alert('tap on child');
+
+        // stop propagation from child to parent
+        event.stopPropagation();
+      });
+</script>
+</body>
+</html>
