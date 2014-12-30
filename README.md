@@ -9,6 +9,8 @@ Extend hammer.js v2 with event propagation.
   elements.
 - Events are extended with a function `event.stopPropagation()` to stop
   propagation to parent elements.
+- Extend individual hammer.js instances with propagated ones, or replace the
+  global hammer.js constructor with a propagated one.
 - Supports changing and rearranging the HTML DOM on the fly.
 - Load via commonjs, AMD, or as a plain old JavaScript file.
 
@@ -52,6 +54,24 @@ function init() {
 
 # Use
 
+To extend individual hammer.js instances with event propagation:
+
+```js
+var hammer = propagating(new Hammer(element));
+```
+
+To extend the global hammer.js constructor
+
+```js
+Hammer = propagating(Hammer);
+```
+
+# Examples
+
+Here a basic usage example.
+More examples are available in the folder [/examples](./examples/).
+
+
 ```html
 <!DOCTYPE html>
 <html>
@@ -93,21 +113,15 @@ function init() {
 </html>
 ```
 
-# Examples
-
-- [demo1.html](demo1.html)
-- [demo2.html](demo2.html)
-
-
 # API
 
 Construction:
 
-    propagatingHammer(hammer: Hammer.Manager) : Hammer.Manager
+    propagating(hammer: Hammer.Manager) : Hammer.Manager
 
 **parameters**
 
-- `hammer: Hammer.Manager` An hammer instance.
+- `hammer: Hammer.Manager` An hammer instance or the global hammer constructor.
 
 **returns**
 

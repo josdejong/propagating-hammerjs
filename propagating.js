@@ -31,6 +31,22 @@
    *                          functionality
    */
   return function (hammer) {
+    if (hammer.Manager) {
+      // This looks like the Hammer constructor.
+      // Overload the constructors with our own
+      var Hammer = hammer;
+
+      var PropagatingHammer = function(element, options) {
+        return propagating(new Hammer(element, options));
+      };
+      Hammer.extend(PropagatingHammer, Hammer);
+      PropagatingHammer.Manager = function (element, options) {
+        return propagating(new Hammer.Manager(element, options));
+      };
+
+      return PropagatingHammer;
+    }
+
     // attach to DOM element
     var element = hammer.element;
     element.hammer = hammer;
