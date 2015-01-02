@@ -30,7 +30,7 @@
    * @return {Hammer.Manager} Returns the same hammer instance with extended
    *                          functionality
    */
-  return function (hammer) {
+  return function propagating(hammer) {
     if (hammer.Manager) {
       // This looks like the Hammer constructor.
       // Overload the constructors with our own
