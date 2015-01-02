@@ -1,6 +1,6 @@
 {
   "name": "propagating-hammerjs",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Extend hammer.js with event propagation",
   "main": "propagating.js",
   "scripts": {
