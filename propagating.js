@@ -14,6 +14,10 @@
     root.propagating = factory();
   }
 }(this, function () {
+  // will contain the target element where the gesture started
+  var _firstTarget = null; // singleton
+  var _handled = {}; // TODO
+
   /**
    * Extend an Hammer.js instance with event propagation.
    *
@@ -56,8 +60,17 @@
     hammer._off = hammer.off;
     hammer._destroy = hammer.destroy;
 
-    /** @type {Object.<String, Array.<{handler: function, wrapper: function}>>} */
+    /** @type {Object.<String, Array.<function>>} */
     hammer._handlers = {};
+
+    // register an event to catch the start of a gesture and store the
+    // target in a singleton
+    hammer._on('hammer.input', function (event) {
+      if (event.isFirst) {
+        _firstTarget = event.target;
+        _handled = {};
+      }
+    });
 
     /**
      * Register a handler for one or multiple events
@@ -135,10 +148,25 @@
      */
     function propagatedHandler(event) {
       // let only a single hammer instance handle this event
-      if (event.srcEvent._handled) {
-        return;
+      if (event.type !== 'hammer.input') {
+        if (event.srcEvent._handled && event.srcEvent._handled[event.type]) {
+          return;
+        }
+        else {
+          // it is possible that the same srcEvent is used with multiple hammer events
+          event.srcEvent._handled = {};
+          event.srcEvent._handled[event.type] = true;
+        }
       }
-      event.srcEvent._handled = true;
+
+      //  // TODO: use a singleton _handled instead of attaching this to the srcEvent? Reset _handled when event.isFirst
+      //if (_handled[event.type]) {
+      //  return;
+      //}
+      //else {
+      //  // it is possible that the same srcEvent is used with multiple hammer events
+      //  _handled[event.type] = true;
+      //}
 
       // attach a stopPropagation function to the event
       var stopped = false;
@@ -146,8 +174,11 @@
         stopped = true;
       };
 
+      // attach firstTarget property to the event
+      event.firstTarget = _firstTarget;
+
       // propagate over all elements (until stopped)
-      var elem = event.target;
+      var elem = _firstTarget;
       while (elem && !stopped) {
         var _handlers = elem.hammer && elem.hammer._handlers[event.type];
         if (_handlers) {
@@ -161,5 +192,5 @@
     }
 
     return hammer;
-  }
+  };
 }));

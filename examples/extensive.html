@@ -48,7 +48,7 @@
     </div>
   </div>
   <div id="child2">
-    child2 (stops propagation!)
+    child2 (stops propagation)
     <div id="grandchild2">
       grandchild2
     </div>
@@ -69,7 +69,7 @@
         console.log('tap parent');
       })
       .on('pan', function (event) {
-        console.log('pan parent')
+        console.log('pan parent');
       });
 
   hammers['child1'] = propagating(new Hammer(child1))
@@ -77,7 +77,7 @@
         console.log('tap child1');
       })
       .on('pan', function (event) {
-        console.log('pan child1')
+        console.log('pan child1');
       });
 
   hammers['grandchild1'] = propagating(new Hammer(grandchild1))
@@ -94,7 +94,7 @@
         event.stopPropagation();
       })
       .on('pan', function (event) {
-        console.log('pan child2')
+        console.log('pan child2');
         event.stopPropagation();
       });
 
@@ -103,13 +103,12 @@
         console.log('tap grandchild2');
       })
       .on('pan', function (event) {
-        console.log('pan grandchild2')
+        console.log('pan grandchild2');
       });
 
 //  hammerParent.on('hammer.input', function (event) {
 //        console.log('hammer.input', event);
 //      });
-
 
   function destroy() {
     Object.keys(hammers).forEach(function (name) {
