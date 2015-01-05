@@ -9,8 +9,8 @@ Extend hammer.js v2 with event propagation.
   elements.
 - Events are extended with a function `event.stopPropagation()` to stop
   propagation to parent elements.
-- Extend individual hammer.js instances with propagated ones, or replace the
-  global hammer.js constructor with a propagated one.
+- Events are extended with a property `event.firstTarget` containing the
+  element where a gesture started.
 - Supports changing and rearranging the HTML DOM on the fly.
 - Load via commonjs, AMD, or as a plain old JavaScript file.
 
@@ -19,7 +19,7 @@ Extend hammer.js v2 with event propagation.
 
     npm install propagating-hammerjs
 
-## Load
+# Load
 
 ## Browser
 
@@ -126,6 +126,20 @@ Construction:
 **returns**
 
 Returns the same hammer instance with extended functionality.
+
+**events**
+
+The emitted [hammer.js events](http://hammerjs.github.io/api/#event-object) are
+extended with:
+
+-   `event.stopPropagation()`
+
+    If called, the event will not further propagate the elements parents.
+
+-   `event.firstTarget`
+
+    Contains the HTML element where a gesture started (where as `event.target`
+    contains the element where the pointer is right now).
 
 
 # License
