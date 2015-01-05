@@ -1,6 +1,6 @@
 # History
 
-## not yet released, version 1.1.2
+## 2015-01-05, version 1.2.0
 
 - Added an event property `event.firstTarget`, always containing the element
   where a gesture started.

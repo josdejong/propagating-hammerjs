@@ -16,7 +16,6 @@
 }(this, function () {
   // will contain the target element where the gesture started
   var _firstTarget = null; // singleton
-  var _handled = {}; // TODO
 
   /**
    * Extend an Hammer.js instance with event propagation.
@@ -37,7 +36,7 @@
   return function propagating(hammer) {
     if (hammer.Manager) {
       // This looks like the Hammer constructor.
-      // Overload the constructors with our own
+      // Overload the constructors with our own.
       var Hammer = hammer;
 
       var PropagatingHammer = function(element, options) {
@@ -68,7 +67,6 @@
     hammer._on('hammer.input', function (event) {
       if (event.isFirst) {
         _firstTarget = event.target;
-        _handled = {};
       }
     });
 
@@ -158,15 +156,6 @@
           event.srcEvent._handled[event.type] = true;
         }
       }
-
-      //  // TODO: use a singleton _handled instead of attaching this to the srcEvent? Reset _handled when event.isFirst
-      //if (_handled[event.type]) {
-      //  return;
-      //}
-      //else {
-      //  // it is possible that the same srcEvent is used with multiple hammer events
-      //  _handled[event.type] = true;
-      //}
 
       // attach a stopPropagation function to the event
       var stopped = false;
