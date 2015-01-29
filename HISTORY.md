@@ -1,5 +1,11 @@
 # History
 
+## 2015-01-29, version 1.2.1
+
+- Removed using top level `this`, attaching `propagating` immediately to
+  `window instead`.
+
+
 ## 2015-01-05, version 1.2.0
 
 - Added an event property `event.firstTarget`, always containing the element

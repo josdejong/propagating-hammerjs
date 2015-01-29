@@ -1,6 +1,6 @@
 'use strict';
 
-(function (root, factory) {
+(function (factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
     define([], factory);
@@ -11,9 +11,9 @@
     module.exports = factory();
   } else {
     // Browser globals (root is window)
-    root.propagating = factory();
+    window.propagating = factory();
   }
-}(this, function () {
+}(function () {
   // will contain the target element where the gesture started
   var _firstTarget = null; // singleton
 
