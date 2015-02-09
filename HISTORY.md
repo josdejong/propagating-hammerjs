@@ -1,6 +1,6 @@
 # History
 
-## not yet released, version 1.2.2
+## 2015-02-09, version 1.2.2
 
 - Fixed #2, the `emit` method not working.
 
