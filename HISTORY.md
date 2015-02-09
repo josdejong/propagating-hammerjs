@@ -1,5 +1,10 @@
 # History
 
+## not yet released, version 1.2.2
+
+- Fixed #2, the `emit` method not working.
+
+
 ## 2015-01-29, version 1.2.1
 
 - Removed using top level `this`, attaching `propagating` immediately to

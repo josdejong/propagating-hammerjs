@@ -57,6 +57,7 @@
     // move the original functions that we will wrap
     hammer._on = hammer.on;
     hammer._off = hammer.off;
+    hammer._emit = hammer.emit;
     hammer._destroy = hammer.destroy;
 
     /** @type {Object.<String, Array.<function>>} */
@@ -121,6 +122,16 @@
       });
 
       return hammer;
+    };
+
+    /**
+     * Emit to the event listeners
+     * @param {string} eventType
+     * @param {Event} event
+     */
+    hammer.emit = function(eventType, event) {
+      _firstTarget = event.target;
+      hammer._emit(eventType, event);
     };
 
     hammer.destroy = function () {
