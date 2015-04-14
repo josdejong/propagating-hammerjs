@@ -1,7 +1,9 @@
 # History
 
-## not yet released, version 1.2.3
+## not yet released, version 1.3.0
 
+- Created an option `preventDefault` to enforce preventing the default browser
+  behavior.
 - Fixed propagation not being handled correctly when the mouse pointer is
   being dragged outside the parent div.
 

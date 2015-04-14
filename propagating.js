@@ -25,26 +25,37 @@
    *   elements.
    * - Events are extended with a function `event.stopPropagation()` to stop
    *   propagation to parent elements.
+   * - An option `preventDefault` to stop all default browser behavior.
    *
    * Usage:
    *   var hammer = propagatingHammer(new Hammer(element));
+   *   var hammer = propagatingHammer(new Hammer(element), {preventDefault: true});
    *
    * @param {Hammer.Manager} hammer   An hammer instance.
+   * @param {Object} [options]        Available options:
+   *                                  - `preventDefault: boolean` (false by default)
    * @return {Hammer.Manager} Returns the same hammer instance with extended
    *                          functionality
    */
-  return function propagating(hammer) {
+  return function propagating(hammer, options) {
+    if (options && options.preventDefault === false) {
+      throw new Error('Only supports preventDefault == true');
+    }
+    var _options = options || {
+      preventDefault: false
+    };
+
     if (hammer.Manager) {
       // This looks like the Hammer constructor.
       // Overload the constructors with our own.
       var Hammer = hammer;
 
       var PropagatingHammer = function(element, options) {
-        return propagating(new Hammer(element, options));
+        return propagating(new Hammer(element, options), _options);
       };
       Hammer.extend(PropagatingHammer, Hammer);
       PropagatingHammer.Manager = function (element, options) {
-        return propagating(new Hammer.Manager(element, options));
+        return propagating(new Hammer.Manager(element, options), _options);
       };
 
       return PropagatingHammer;
@@ -66,6 +77,9 @@
     // register an event to catch the start of a gesture and store the
     // target in a singleton
     hammer._on('hammer.input', function (event) {
+      if (_options.preventDefault) {
+        event.preventDefault();
+      }
       if (event.isFirst) {
         _firstTarget = event.target;
         _processing = true;

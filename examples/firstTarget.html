@@ -29,7 +29,9 @@
 <script>
   // replace the global Hammer constructor with a propagated one, such that
   // hammer.js instances automatically have event propagation.
-  Hammer = propagating(Hammer);
+  Hammer = propagating(Hammer, {
+    preventDefault: true
+  });
 
   var parent = document.getElementById('parent');
   var hammer1 = new Hammer(parent)
@@ -44,8 +46,6 @@
 
         document.getElementById('firstTarget').innerHTML = 'First target: ' + event.firstTarget.id;
         document.getElementById('target').innerHTML = 'Target: ' + event.target.id;
-
-        event.preventDefault();
       })
       .on('panstart', function (event) {
         console.log('panstart on child', event);

@@ -117,11 +117,16 @@ More examples are available in the folder [/examples](./examples/).
 
 Construction:
 
-    propagating(hammer: Hammer.Manager) : Hammer.Manager
+    propagating(hammer: Hammer.Manager [, options: Object]) : Hammer.Manager
 
 **parameters**
 
 - `hammer: Hammer.Manager` An hammer instance or the global hammer constructor.
+
+- `options: Object` An optional object with options. Available options:
+
+  - `preventDefault: true`. Optional. Enforce preventing the default browser 
+    behavior. Can only be set to `true`.
 
 **returns**
 
