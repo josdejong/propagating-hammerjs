@@ -1,6 +1,6 @@
 # History
 
-## not yet released, version 1.3.0
+## 2015-04-16, version 1.3.0
 
 - Created an option `preventDefault` to enforce preventing the default browser
   behavior.
