@@ -14,8 +14,8 @@
     window.propagating = factory();
   }
 }(function () {
-  // will contain the target element where the gesture started
-  var _firstTarget = null; // singleton
+  var _firstTarget = null; // singleton, will contain the target element where the touch event started
+  var _processing = false; // singleton, true when a touch event is being handled
 
   /**
    * Extend an Hammer.js instance with event propagation.
@@ -68,6 +68,10 @@
     hammer._on('hammer.input', function (event) {
       if (event.isFirst) {
         _firstTarget = event.target;
+        _processing = true;
+      }
+      if (event.isFinal) {
+        _processing = false;
       }
     });
 
@@ -130,7 +134,9 @@
      * @param {Event} event
      */
     hammer.emit = function(eventType, event) {
-      _firstTarget = event.target;
+      if (!_processing) {
+        _firstTarget = event.target;
+      }
       hammer._emit(eventType, event);
     };
 

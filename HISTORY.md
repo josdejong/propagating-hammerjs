@@ -1,5 +1,11 @@
 # History
 
+## not yet released, version 1.2.3
+
+- Fixed propagation not being handled correctly when the mouse pointer is
+  being dragged outside the parent div.
+
+
 ## 2015-02-09, version 1.2.2
 
 - Fixed #2, the `emit` method not working.
