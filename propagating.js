@@ -33,7 +33,9 @@
    *
    * @param {Hammer.Manager} hammer   An hammer instance.
    * @param {Object} [options]        Available options:
-   *                                  - `preventDefault: boolean` (false by default)
+   *                                  - `preventDefault: true | 'mouse' | 'touch' | 'pen'`.
+   *                                    Enforce preventing the default browser behavior.
+   *                                    Cannot be set to `false`.
    * @return {Hammer.Manager} Returns the same hammer instance with extended
    *                          functionality
    */
@@ -77,7 +79,7 @@
     // register an event to catch the start of a gesture and store the
     // target in a singleton
     hammer._on('hammer.input', function (event) {
-      if (_options.preventDefault) {
+      if (_options.preventDefault === true || (_options.preventDefault === event.pointerType)) {
         event.preventDefault();
       }
       if (event.isFirst) {

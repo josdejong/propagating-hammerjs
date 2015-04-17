@@ -1,6 +1,12 @@
 # History
 
-## 2015-04-16, version 1.3.0
+## 2015-04-17, version 1.4.0
+
+- Extended the option `preventDefault` with values `'mouse'`, `'touch'`, 
+  and `'pen'` to prevent default behavior for a specific type of device.
+
+
+## 2015-04-14, version 1.3.0
 
 - Created an option `preventDefault` to enforce preventing the default browser
   behavior.

@@ -125,8 +125,8 @@ Construction:
 
 - `options: Object` An optional object with options. Available options:
 
-  - `preventDefault: true`. Optional. Enforce preventing the default browser 
-    behavior. Can only be set to `true`.
+  - `preventDefault: true | 'mouse' | 'touch' | 'pen'`. Optional. 
+    Enforce preventing the default browser behavior. Cannot be set to `false`.
 
 **returns**
 
