@@ -180,12 +180,16 @@
     function propagatedHandler(event) {
       // let only a single hammer instance handle this event
       if (event.type !== 'hammer.input') {
-        if (event.srcEvent._handled && event.srcEvent._handled[event.type]) {
+        // it is possible that the same srcEvent is used with multiple hammer events,
+        // we keep track on which events are handled in an object _handled
+        if (!event.srcEvent._handled) {
+          event.srcEvent._handled = {};
+        }
+
+        if (event.srcEvent._handled[event.type]) {
           return;
         }
         else {
-          // it is possible that the same srcEvent is used with multiple hammer events
-          event.srcEvent._handled = {};
           event.srcEvent._handled[event.type] = true;
         }
       }

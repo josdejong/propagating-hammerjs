@@ -1,5 +1,10 @@
 # History
 
+## 2015-04-20, version 1.4.1
+
+- Fixed not being able to handle both a tap and double tap.
+
+
 ## 2015-04-17, version 1.4.0
 
 - Extended the option `preventDefault` with values `'mouse'`, `'touch'`, 
