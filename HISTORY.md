@@ -1,5 +1,11 @@
 # History
 
+## 2015-06-02, version 1.4.2
+
+- Fixed not being able to overload options when having overridden the global 
+  Hammer instance.
+  
+
 ## 2015-04-20, version 1.4.1
 
 - Fixed not being able to handle both a tap and double tap.

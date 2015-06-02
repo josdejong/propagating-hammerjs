@@ -40,9 +40,6 @@
    *                          functionality
    */
   return function propagating(hammer, options) {
-    if (options && options.preventDefault === false) {
-      throw new Error('Only supports preventDefault == true');
-    }
     var _options = options || {
       preventDefault: false
     };
@@ -53,11 +50,16 @@
       var Hammer = hammer;
 
       var PropagatingHammer = function(element, options) {
-        return propagating(new Hammer(element, options), _options);
+        var o = Object.create(_options);
+        if (options) Hammer.extend(o, options);
+        return propagating(new Hammer(element, o), o);
       };
       Hammer.extend(PropagatingHammer, Hammer);
+
       PropagatingHammer.Manager = function (element, options) {
-        return propagating(new Hammer.Manager(element, options), _options);
+        var o = Object.create(_options);
+        if (options) Hammer.extend(o, options);
+        return propagating(new Hammer.Manager(element, o), o);
       };
 
       return PropagatingHammer;
