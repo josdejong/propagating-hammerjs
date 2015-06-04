@@ -65,33 +65,27 @@
       return PropagatingHammer;
     }
 
+    // create a wrapper object which will override the functions
+    // `on`, `off`, `destroy`, and `emit` of the hammer instance
+    var wrapper = Object.create(hammer);
+
     // attach to DOM element
     var element = hammer.element;
-    element.hammer = hammer;
-
-    // move the original functions that we will wrap
-    hammer._on = hammer.on;
-    hammer._off = hammer.off;
-    hammer._emit = hammer.emit;
-    hammer._destroy = hammer.destroy;
-
-    /** @type {Object.<String, Array.<function>>} */
-    hammer._handlers = {};
+    element.hammer = wrapper;
 
     // register an event to catch the start of a gesture and store the
     // target in a singleton
-    hammer._on('hammer.input', function (event) {
+    hammer.on('hammer.input', function (event) {
       if (_options.preventDefault === true || (_options.preventDefault === event.pointerType)) {
         event.preventDefault();
       }
       if (event.isFirst) {
         _firstTarget = event.target;
-        _processing = true;
-      }
-      if (event.isFinal) {
-        _processing = false;
       }
     });
+
+    /** @type {Object.<String, Array.<function>>} */
+    wrapper._handlers = {};
 
     /**
      * Register a handler for one or multiple events
@@ -99,20 +93,20 @@
      * @param {function} handler A callback function, called as handler(event)
      * @returns {Hammer.Manager} Returns the hammer instance
      */
-    hammer.on = function (events, handler) {
+    wrapper.on = function (events, handler) {
       // register the handler
       split(events).forEach(function (event) {
-        var _handlers = hammer._handlers[event];
+        var _handlers = wrapper._handlers[event];
         if (!_handlers) {
-          hammer._handlers[event] = _handlers = [];
+          wrapper._handlers[event] = _handlers = [];
 
           // register the static, propagated handler
-          hammer._on(event, propagatedHandler);
+          hammer.on(event, propagatedHandler);
         }
         _handlers.push(handler);
       });
 
-      return hammer;
+      return wrapper;
     };
 
     /**
@@ -123,27 +117,27 @@
      *                             are removed.
      * @returns {Hammer.Manager}   Returns the hammer instance
      */
-    hammer.off = function (events, handler) {
+    wrapper.off = function (events, handler) {
       // unregister the handler
       split(events).forEach(function (event) {
-        var _handlers = hammer._handlers[event];
+        var _handlers = wrapper._handlers[event];
         if (_handlers) {
           _handlers = handler ? _handlers.filter(function (h) {
             return h !== handler;
           }) : [];
 
           if (_handlers.length > 0) {
-            hammer._handlers[event] = _handlers;
+            wrapper._handlers[event] = _handlers;
           }
           else {
             // remove static, propagated handler
-            hammer._off(event, propagatedHandler);
-            delete hammer._handlers[event];
+            hammer.off(event, propagatedHandler);
+            delete wrapper._handlers[event];
           }
         }
       });
 
-      return hammer;
+      return wrapper;
     };
 
     /**
@@ -151,23 +145,20 @@
      * @param {string} eventType
      * @param {Event} event
      */
-    hammer.emit = function(eventType, event) {
-      if (!_processing) {
-        _firstTarget = event.target;
-      }
-      hammer._emit(eventType, event);
+    wrapper.emit = function(eventType, event) {
+      _firstTarget = event.target;
+      hammer.emit(eventType, event);
     };
 
-    hammer.destroy = function () {
+    wrapper.destroy = function () {
       // Detach from DOM element
-      var element = hammer.element;
-      delete element.hammer;
+      delete hammer.element.hammer;
 
       // clear all handlers
-      hammer._handlers = {};
+      wrapper._handlers = {};
 
       // call original hammer destroy
-      hammer._destroy();
+      hammer.destroy();
     };
 
     // split a string with space separated words
@@ -219,6 +210,6 @@
       }
     }
 
-    return hammer;
+    return wrapper;
   };
 }));

@@ -1,5 +1,11 @@
 # History
 
+## 2015-06-04, version 1.4.3
+
+- Fixed `dragend` events not being emitted correctly in case of multiple
+  nested handlers.
+
+  
 ## 2015-06-02, version 1.4.2
 
 - Fixed not being able to overload options when having overridden the global 
