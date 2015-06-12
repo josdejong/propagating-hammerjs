@@ -198,6 +198,15 @@
         stopped = true;
       };
 
+      //wrap the srcEvent's stopPropagation to also stop hammer propagation:
+      var srcStop = event.srcEvent.stopPropagation;
+      if(typeof srcStop == "function") {
+        event.srcEvent.stopPropagation = function(){
+          srcStop();
+          event.stopPropagation();
+        }
+      }
+
       // attach firstTarget property to the event
       event.firstTarget = _firstTarget;
 
