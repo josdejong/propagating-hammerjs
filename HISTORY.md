@@ -1,5 +1,10 @@
 # History
 
+## not yet released, version 1.4.4-SNAPSHOT
+
+- Fixed not working in case of multiple instances of propagating-hammerjs on 
+  the same DOM element. Thanks @jsdw.
+
 ## 2015-06-04, version 1.4.3
 
 - Fixed `dragend` events not being emitted correctly in case of multiple
