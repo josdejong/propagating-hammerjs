@@ -71,7 +71,9 @@
 
     // attach to DOM element
     var element = hammer.element;
-    element.hammer = wrapper;
+
+    if(!element.hammer) element.hammer = [];
+    element.hammer.push(wrapper);
 
     // register an event to catch the start of a gesture and store the
     // target in a singleton
@@ -152,7 +154,10 @@
 
     wrapper.destroy = function () {
       // Detach from DOM element
-      delete hammer.element.hammer;
+      var hammers = hammer.element.hammer;
+      var idx = hammers.indexOf(wrapper);
+      if(idx !== -1) hammers.splice(idx,1);
+      if(!hammers.length) delete hammer.element.hammer;
 
       // clear all handlers
       wrapper._handlers = {};
@@ -193,19 +198,30 @@
         stopped = true;
       };
 
+      //wrap the srcEvent's stopPropagation to also stop hammer propagation:
+      var srcStop = event.srcEvent.stopPropagation;
+      if(typeof srcStop == "function") {
+        event.srcEvent.stopPropagation = function(){
+          srcStop();
+          event.stopPropagation();
+        }
+      }
+
       // attach firstTarget property to the event
       event.firstTarget = _firstTarget;
 
       // propagate over all elements (until stopped)
       var elem = _firstTarget;
       while (elem && !stopped) {
-        var _handlers = elem.hammer && elem.hammer._handlers[event.type];
-        if (_handlers) {
-          for (var i = 0; i < _handlers.length && !stopped; i++) {
-            _handlers[i](event);
+        if(elem.hammer){
+          var _handlers;
+          for(var k = 0; k < elem.hammer.length; k++){
+            _handlers = elem.hammer[k]._handlers[event.type];
+            if(_handlers) for (var i = 0; i < _handlers.length && !stopped; i++) {
+              _handlers[i](event);
+            }
           }
         }
-
         elem = elem.parentNode;
       }
     }

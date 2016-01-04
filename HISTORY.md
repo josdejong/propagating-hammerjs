@@ -4,6 +4,8 @@
 
 - Upgraded to Hammer.js v2.0.6. 
   - Replaced usage of `Hammer.extend` with `Hammer.assign`.
+- Fixed not working in case of multiple instances of propagating-hammerjs on 
+  the same DOM element. Thanks @jsdw.
 
 
 ## 2015-06-04, version 1.4.3
