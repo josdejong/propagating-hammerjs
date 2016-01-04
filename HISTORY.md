@@ -1,5 +1,11 @@
 # History
 
+## 2016-01-04, version 1.4.4
+
+- Upgraded to Hammer.js v2.0.6. 
+  - Replaced usage of `Hammer.extend` with `Hammer.assign`.
+
+
 ## 2015-06-04, version 1.4.3
 
 - Fixed `dragend` events not being emitted correctly in case of multiple
