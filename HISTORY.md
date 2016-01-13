@@ -1,5 +1,11 @@
 # History
 
+## 2016-01-13, version 1.4.5
+
+- Made `propagating-hammerjs` more robust against removing/attaching a DOM
+  element in the DOM whilst executing a touch event of the DOM element itself.
+
+
 ## 2016-01-04, version 1.4.4
 
 - Upgraded to Hammer.js v2.0.6. 
