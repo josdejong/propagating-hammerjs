@@ -15,7 +15,6 @@
   }
 }(function () {
   var _firstTarget = null; // singleton, will contain the target element where the touch event started
-  var _processing = false; // singleton, true when a touch event is being handled
 
   /**
    * Extend an Hammer.js instance with event propagation.
@@ -33,7 +32,7 @@
    *
    * @param {Hammer.Manager} hammer   An hammer instance.
    * @param {Object} [options]        Available options:
-   *                                  - `preventDefault: true | 'mouse' | 'touch' | 'pen'`.
+   *                                  - `preventDefault: true | false | 'mouse' | 'touch' | 'pen'`.
    *                                    Enforce preventing the default browser behavior.
    *                                    Cannot be set to `false`.
    * @return {Hammer.Manager} Returns the same hammer instance with extended
