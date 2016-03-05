@@ -198,7 +198,7 @@
       };
 
       //wrap the srcEvent's stopPropagation to also stop hammer propagation:
-      var srcStop = event.srcEvent.stopPropagation;
+      var srcStop = event.srcEvent.stopPropagation.bind(event.srcEvent);
       if(typeof srcStop == "function") {
         event.srcEvent.stopPropagation = function(){
           srcStop();

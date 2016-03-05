@@ -1,5 +1,10 @@
 # History
 
+## 2016-03-05, version 1.4.6
+
+- Fixed #6: stopPropagation not binding to the original event.
+
+
 ## 2016-01-13, version 1.4.5
 
 - Made `propagating-hammerjs` more robust against removing/attaching a DOM
