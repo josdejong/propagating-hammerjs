@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/josdejong/propagating-hammerjs",
   "dependencies": {
-    "hammerjs": "^2.0.6"
+    "hammerjs": "^2.0.8"
   }
 }
