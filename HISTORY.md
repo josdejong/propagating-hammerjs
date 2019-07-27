@@ -1,5 +1,10 @@
 # History
 
+## 2019-07-27, version 1.4.7
+
+- Upgraded to `hammerjs@2.0.8`. Thanks @mojoaxel.
+
+
 ## 2016-03-05, version 1.4.6
 
 - Fixed #6: stopPropagation not binding to the original event.
@@ -13,9 +18,9 @@
 
 ## 2016-01-04, version 1.4.4
 
-- Upgraded to Hammer.js v2.0.6. 
+- Upgraded to Hammer.js v2.0.6.
   - Replaced usage of `Hammer.extend` with `Hammer.assign`.
-- Fixed not working in case of multiple instances of propagating-hammerjs on 
+- Fixed not working in case of multiple instances of propagating-hammerjs on
   the same DOM element. Thanks @jsdw.
 
 
@@ -24,12 +29,12 @@
 - Fixed `dragend` events not being emitted correctly in case of multiple
   nested handlers.
 
-  
+
 ## 2015-06-02, version 1.4.2
 
-- Fixed not being able to overload options when having overridden the global 
+- Fixed not being able to overload options when having overridden the global
   Hammer instance.
-  
+
 
 ## 2015-04-20, version 1.4.1
 
@@ -38,7 +43,7 @@
 
 ## 2015-04-17, version 1.4.0
 
-- Extended the option `preventDefault` with values `'mouse'`, `'touch'`, 
+- Extended the option `preventDefault` with values `'mouse'`, `'touch'`,
   and `'pen'` to prevent default behavior for a specific type of device.
 
 
