@@ -1,9 +1,8 @@
-propagating-hammerjs
-====================
+# propagating-hammerjs
 
-Extend hammer.js v2 with event propagation.
+Extend [hammer.js](https://github.com/hammerjs/hammer.js) v2 with event propagation.
 
-# Features
+## Features
 
 - Events emitted by hammer will propagate in order from child to parent
   elements.
@@ -14,21 +13,22 @@ Extend hammer.js v2 with event propagation.
 - Supports changing and rearranging the HTML DOM on the fly.
 - Load via commonjs, AMD, or as a plain old JavaScript file.
 
+## Install
 
-# Install
+```sh
+npm install propagating-hammerjs
+```
 
-    npm install propagating-hammerjs
+## Load
 
-# Load
-
-## Browser
+### Browser
 
 ```html
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="node_modules/hammerjs/hammer.js"></script>
-  <script src="propagating.js"></script>
+  <script src="https://unpkg.com/hammerjs@latest/hammer.js"></script>
+  <script src="https://unpkg.com/propagating-hammerjs@latest/propagating.js"></script>
   <script>
     function init() {
       var hammer = propagating(new Hammer(element));
@@ -40,7 +40,7 @@ Extend hammer.js v2 with event propagation.
 </html>
 ```
 
-## Commonjs (Node.js + Browserify)
+### Commonjs (e.g. Node.js, Browserify)
 
 ```js
 var Hammer = require('hammerjs');
@@ -51,8 +51,18 @@ function init() {
 }
 ```
 
+### ESM (e.g. ES6, typescript)
 
-# Use
+```typescript
+import Hammer from 'hammerjs';
+import propagating from 'propagating-hammerjs';
+
+function init() {
+  const hammer = propagating(new Hammer(element));
+}
+```
+
+## Use
 
 To extend individual hammer.js instances with event propagation:
 
@@ -66,11 +76,10 @@ To extend the global hammer.js constructor
 Hammer = propagating(Hammer);
 ```
 
-# Examples
+## Examples
 
 Here a basic usage example.
 More examples are available in the folder [/examples](./examples/).
-
 
 ```html
 <!DOCTYPE html>
@@ -113,40 +122,43 @@ More examples are available in the folder [/examples](./examples/).
 </html>
 ```
 
-# API
+## API
 
 Construction:
 
-    propagating(hammer: Hammer.Manager [, options: Object]) : Hammer.Manager
+```typescript
+propagating(hammer: Hammer.Manager, options?: {
+  preventDefault?: true | 'mouse' | 'touch' | 'pen'
+}): Hammer.Manager
+```
 
-**parameters**
+### parameters
 
 - `hammer: Hammer.Manager` An hammer instance or the global hammer constructor.
 
 - `options: Object` An optional object with options. Available options:
 
-  - `preventDefault: true | 'mouse' | 'touch' | 'pen'`. Optional. 
+  - `preventDefault: true | 'mouse' | 'touch' | 'pen'`. Optional.
     Enforce preventing the default browser behavior. Cannot be set to `false`.
 
-**returns**
+### returns
 
 Returns the same hammer instance with extended functionality.
 
-**events**
+### events
 
 The emitted [hammer.js events](http://hammerjs.github.io/api/#event-object) are
 extended with:
 
--   `event.stopPropagation()`
+- `event.stopPropagation()`
 
-    If called, the event will not further propagate the elements parents.
+  If called, the event will not further propagate the elements parents.
 
--   `event.firstTarget`
+- `event.firstTarget`
 
-    Contains the HTML element where a gesture started (where as `event.target`
-    contains the element where the pointer is right now).
+  Contains the HTML element where a gesture started (where as `event.target`
+  contains the element where the pointer is right now).
 
-
-# License
+## License
 
 MIT

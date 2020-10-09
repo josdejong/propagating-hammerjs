@@ -1,19 +1,9 @@
-'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+  typeof define === 'function' && define.amd ? define(factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.propagating = factory());
+}(this, (function () { 'use strict';
 
-(function (factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define([], factory);
-  } else if (typeof exports === 'object') {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory();
-  } else {
-    // Browser globals (root is window)
-    window.propagating = factory();
-  }
-}(function () {
   var _firstTarget = null; // singleton, will contain the target element where the touch event started
 
   /**
@@ -38,7 +28,7 @@
    * @return {Hammer.Manager} Returns the same hammer instance with extended
    *                          functionality
    */
-  return function propagating(hammer, options) {
+  function propagating(hammer, options) {
     var _options = options || {
       preventDefault: false
     };
@@ -203,7 +193,7 @@
         event.srcEvent.stopPropagation = function(){
           srcStop();
           event.stopPropagation();
-        }
+        };
       }
 
       // attach firstTarget property to the event
@@ -227,5 +217,8 @@
     }
 
     return wrapper;
-  };
-}));
+  }
+
+  return propagating;
+
+})));
