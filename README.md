@@ -159,6 +159,14 @@ extended with:
   Contains the HTML element where a gesture started (where as `event.target`
   contains the element where the pointer is right now).
 
+## Develop
+
+To generate the UMD bundle for commonjs and browser, run:
+
+```sh
+npm run build
+```
+
 ## License
 
 MIT

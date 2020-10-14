@@ -1,5 +1,10 @@
 # History
 
+## 2020-10-14, version 1.5.0
+
+- Add ESM support. Thanks @mojoaxel.
+
+
 ## 2019-07-27, version 1.4.7
 
 - Upgraded to `hammerjs@2.0.8`. Thanks @mojoaxel.
