@@ -56,7 +56,7 @@ function init() {
 ### ESM (e.g. ES6, typescript)
 
 ```typescript
-import Hammer from 'hammerjs';
+import Hammer from '@egjs/hammerjs';
 import propagating from 'propagating-hammerjs';
 
 function init() {
@@ -87,7 +87,7 @@ More examples are available in the folder [/examples](./examples/).
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="node_modules/@egjs/hammerjs/hammer.js"></script>
+  <script src="node_modules/@egjs/hammerjs/dist/hammer.js"></script>
   <script src="node_muludes/propagating-hammerjs/propagating.js"></script>
   <style>
     div     {border: 1px solid black;}

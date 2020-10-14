@@ -1,6 +1,6 @@
 {
   "name": "propagating-hammerjs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Extend hammer.js with event propagation",
   "main": "propagating.js",
   "module": "./src/propagating.js",
@@ -34,7 +34,8 @@
   },
   "homepage": "https://github.com/josdejong/propagating-hammerjs",
   "devDependencies": {
-    "rollup": "^2.29.0"
+    "rollup": "^2.29.0",
+    "@egjs/hammerjs": "^2.0.17"
   },
   "peerDependencies": {
     "@egjs/hammerjs": "^2.0.17"

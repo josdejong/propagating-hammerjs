@@ -1,5 +1,10 @@
 # History
 
+## 2020-10-14, version 2.0.1
+
+- Fix broken urls to hammerjs in examples.
+
+
 ## 2020-10-14, version 2.0.0
 
 - Switched from `hammerjs` to `@egjs/hammerjs` because the former is not 
