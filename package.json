@@ -4,6 +4,7 @@
   "description": "Extend hammer.js with event propagation",
   "main": "propagating.js",
   "module": "./src/propagating.js",
+  "files": ["*"],
   "scripts": {
     "build": "rollup ./src/propagating.js --file propagating.js --format umd --output.name propagating"
   },
