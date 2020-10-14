@@ -1,5 +1,13 @@
 # History
 
+## 2020-10-14, version 2.0.0
+
+- Switched from `hammerjs` to `@egjs/hammerjs` because the former is not 
+  actively maintained. Thanks @mojoaxel.
+- Change from having hammemrjs as dependency of this library to having it
+  as `peerDependency`. Thanks @mojoaxel.
+
+
 ## 2020-10-14, version 1.5.0
 
 - Add ESM support. Thanks @mojoaxel.
