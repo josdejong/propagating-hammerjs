@@ -1,6 +1,8 @@
 # propagating-hammerjs
 
-Extend [hammer.js](https://github.com/hammerjs/hammer.js) v2 with event propagation.
+Extend [hammer.js](https://hammerjs.github.io/) (v2) with event propagation.
+
+We use the [@egjs/hammerjs](https://www.npmjs.com/package/@egjs/hammerjs) fork because [hammer.js](https://www.npmjs.com/package/hammerjs) is [not maintained anymore](https://github.com/hammerjs/hammer.js/graphs/code-frequency).
 
 ## Features
 
@@ -16,7 +18,7 @@ Extend [hammer.js](https://github.com/hammerjs/hammer.js) v2 with event propagat
 ## Install
 
 ```sh
-npm install propagating-hammerjs
+npm install @egjs/hammerjs propagating-hammerjs
 ```
 
 ## Load
@@ -27,7 +29,7 @@ npm install propagating-hammerjs
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="https://unpkg.com/hammerjs@latest/hammer.js"></script>
+  <script src="https://unpkg.com/@egjs/hammerjs@latest/dist/hammer.js"></script>
   <script src="https://unpkg.com/propagating-hammerjs@latest/propagating.js"></script>
   <script>
     function init() {
@@ -43,7 +45,7 @@ npm install propagating-hammerjs
 ### Commonjs (e.g. Node.js, Browserify)
 
 ```js
-var Hammer = require('hammerjs');
+var Hammer = require('@egjs/hammerjs');
 var propagating = require('propagating-hammerjs');
 
 function init() {
@@ -85,8 +87,8 @@ More examples are available in the folder [/examples](./examples/).
 <!DOCTYPE html>
 <html>
 <head>
-  <script src="node_modules/hammerjs/hammer.js"></script>
-  <script src="propagating.js"></script>
+  <script src="node_modules/@egjs/hammerjs/hammer.js"></script>
+  <script src="node_muludes/propagating-hammerjs/propagating.js"></script>
   <style>
     div     {border: 1px solid black;}
     #parent {width: 400px; height: 400px; background: lightgreen;}

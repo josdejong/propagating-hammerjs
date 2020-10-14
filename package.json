@@ -36,7 +36,7 @@
   "devDependencies": {
     "rollup": "^2.29.0"
   },
-  "dependencies": {
-    "hammerjs": "^2.0.8"
+  "peerDependencies": {
+    "@egjs/hammerjs": "^2.0.17"
   }
 }
