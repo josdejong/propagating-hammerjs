@@ -3,9 +3,14 @@
   "version": "1.4.7",
   "description": "Extend hammer.js with event propagation",
   "main": "propagating.js",
+  "module": "./src/propagating.js",
+  "files": ["*"],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup ./src/propagating.js --file propagating.js --format umd --output.name propagating"
   },
+  "pre-commit": [
+    "build"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/josdejong/propagating-hammerjs.git"
@@ -23,6 +28,10 @@
     "url": "https://github.com/josdejong/propagating-hammerjs/issues"
   },
   "homepage": "https://github.com/josdejong/propagating-hammerjs",
+  "devDependencies": {
+    "pre-commit": "^1.2.2",
+    "rollup": "^2.29.0"
+  },
   "dependencies": {
     "hammerjs": "^2.0.8"
   }

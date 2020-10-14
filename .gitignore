@@ -29,3 +29,6 @@ node_modules
 
 # WebStorm config
 .idea
+
+# exclude dist filed fron the source
+propagating.js
