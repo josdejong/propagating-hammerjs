@@ -196,7 +196,7 @@ export default function propagating(hammer, options) {
     event.firstTarget = _firstTarget;
 
     // propagate over all elements (until stopped)
-    var elem = _firstTarget;
+    var elem = document.contains(_firstTarget) ? _firstTarget : event.target;
     while (elem && !stopped) {
       var elemHammer = elem.hammer;
       if(elemHammer){
