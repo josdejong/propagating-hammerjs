@@ -2,6 +2,15 @@
 
 var _firstTarget = null; // singleton, will contain the target element where the touch event started
 
+function inDocument(el) {
+  var cur = el;
+  while (cur) {
+    if (cur.nodeType === Node.DOCUMENT_NODE) return true;
+    cur = cur.parentNode;
+  }
+  return false;
+}
+
 /**
  * Extend an Hammer.js instance with event propagation.
  *
@@ -196,7 +205,7 @@ export default function propagating(hammer, options) {
     event.firstTarget = _firstTarget;
 
     // propagate over all elements (until stopped)
-    var elem = document.contains(_firstTarget) ? _firstTarget : event.target;
+    var elem = inDocument(_firstTarget) ? _firstTarget : event.target;
     while (elem && !stopped) {
       var elemHammer = elem.hammer;
       if(elemHammer){
