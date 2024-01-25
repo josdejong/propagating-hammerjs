@@ -1,5 +1,12 @@
 # History
 
+## 2024-01-25, version 3.0.0
+
+- Breaking: Dropped support for IE 11
+- Fix: Use `event.target` in cases where the target has been removed 
+  from the DOM (#17). Thanks @sgparrish.
+
+
 ## 2020-10-14, version 2.0.1
 
 - Fix broken urls to hammerjs in examples.
