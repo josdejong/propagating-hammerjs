@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/josdejong/propagating-hammerjs",
   "devDependencies": {
-    "rollup": "^4.9.6",
+    "rollup": "^4.22.4",
     "@egjs/hammerjs": "^2.0.17"
   },
   "peerDependencies": {
